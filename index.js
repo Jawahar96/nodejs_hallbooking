@@ -12,7 +12,7 @@ const mongoClient =mongodb.MongoClient
 const URL=("mongodb+srv://jawaharsabesan:Jawasab@01@cluster0.n6dtkg8.mongodb.net/?retryWrites=true&w=majority")
 
 
-const DB = process.env.DB
+// const DB = process.env.DB
 
 const PORT =process.env.PORT || 8080
 
@@ -22,7 +22,7 @@ app.use(express.json())
 app.get('/',function(req,res){
     res.json({message :" Welcome To HALL BOOKING ROOM API "})
 
-    app.get('/rooms',async function(req,res){
+    app.post('/rooms',async function(req,res){
         try {
             const connection =await mongoClient.connect(URL)
             const db =connection.db(DB)
@@ -70,6 +70,7 @@ app.post('/createaroom', async function(req,res){
 
 app.get('/bookingrooms', async function(req,res){
     try{
+        
         const connection =await mongoClient.connect(URL);
         const db=connection.db(DB)
         let bookingrooms =await db.collection("customerroom").aggregate(pipeline).toArray()
