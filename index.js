@@ -11,7 +11,7 @@ const mongoClient =mongodb.MongoClient
 
 
 
-// const DB = process.env.DB
+const DB = process.env.DB
 
 const PORT =process.env.PORT || 3001
 
@@ -55,10 +55,10 @@ app.post('/createaroom', async function(req,res){
     try{
     const connection =await mongoClient.connect(URL)
     const db =connection.db(DB)
-    let customer =await db.collection("creating a room").insertOne(req.body)
+    let creatingroom =await db.collection("creating a room").insertOne(req.body)
     
     await connection.close()
-
+  res.json(creatingroom)
     res.json({message : " Customer Room inserted"})
     }catch(error){
         console.log(error);
