@@ -13,7 +13,7 @@ const mongoClient =mongodb.MongoClient
 
 // const DB = process.env.DB
 
-const PORT =process.env.PORT || 8080
+const PORT =process.env.PORT || 3001
 
 
 app.use(express.json())
@@ -55,12 +55,13 @@ app.post('/createaroom', async function(req,res){
     try{
     const connection =await mongoClient.connect(URL)
     const db =connection.db(DB)
-    let customers =await db.collection("customers").insertOne({_id :req.params.id}).toArray()
-    res.json(customers)
+    let customer =await db.collection("creating a room").insertOne(req.body)
+    
     await connection.close()
 
     res.json({message : " Customer Room inserted"})
     }catch(error){
+        console.log(error);
      res.status(500).json({message : "something went wrong in your application"})
     }
 
@@ -86,6 +87,5 @@ app.get('/bookingrooms', async function(req,res){
     
 
 
-app.listen(PORT ,()=>{
-    console.log(`SERVER IS RUNNING ON THE PORT ${PORT}`);
-})
+app.listen(process.env.PORT || 3001)
+
