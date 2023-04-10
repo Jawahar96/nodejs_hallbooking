@@ -9,7 +9,6 @@ const mongodb = require('mongodb')
 
 const mongoClient =mongodb.MongoClient
 
-const URL=("mongodb+srv://jawaharsabesan:Jawasab@01@cluster0.n6dtkg8.mongodb.net/?retryWrites=true&w=majority")
 
 
 // const DB = process.env.DB
